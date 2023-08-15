@@ -1,25 +1,28 @@
-import { PrismaClient } from "@prisma/client";
-import Image from "next/image";
-const prisma = new PrismaClient();
+import { currentUser } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
+import Card from "@/components/card";
+import { fetchUser } from "@/lib/actions/user.actions";
+import Navbar from "@/components/sidebar";
 
 export default async function Home() {
-  // await prisma.page.create({
-  //   data: {
-  //     url: "https://images.unsplash.com/photo-1546521343-4eb2c01aa44b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80",
-  //     boook: { connect: { id: 1 } },
-  //   },
-  // });
+  const user = await currentUser();
+  if (!user) return null;
 
-  const pages = await prisma.page.findMany();
-  console.log({ pages });
+  const userInfo = await fetchUser(user.id);
+  if (!userInfo) redirect("/onboarding");
+
   return (
-    <div>
-      <Image
-        src="https://images.unsplash.com/photo-1546521343-4eb2c01aa44b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80"
-        width={735}
-        height={500}
-        alt="Picture of the author"
-      />
-    </div>
+    <main className="flex flex-col">
+      <Navbar />
+      <div className="p-7 grid gap-5 grid-cols-1 md:grid-cols-4 lg:grid-cols-4">
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+      </div>
+    </main>
   );
 }

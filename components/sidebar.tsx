@@ -1,3 +1,4 @@
+"use client";
 import {
   Sheet,
   SheetContent,
@@ -49,7 +50,10 @@ export default function Navbar() {
                   </AccordionTrigger>
                   <div className="grid grid-cols-3 gap-2">
                     {newArray.map((page) => (
-                      <AccordionContent className="cursor-pointer hover:text-black ">
+                      <AccordionContent
+                        key={page}
+                        className="cursor-pointer hover:text-black "
+                      >
                         Page {page + 1}
                       </AccordionContent>
                     ))}

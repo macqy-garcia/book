@@ -6,8 +6,8 @@ export default function Card() {
       <a href="#">
         <Image
           src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1548646741i/11741765.jpg"
-          width={1157}
-          height={1724}
+          width={567}
+          height={1157}
           alt="Picture of the author"
         />
       </a>
