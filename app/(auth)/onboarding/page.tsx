@@ -9,18 +9,20 @@ export default async function Page() {
   if (!user) return null; // to avoid typescript warnings
 
   const userInfo = await fetchUser(user.id);
-  if (userInfo) redirect("/");
+  if (!userInfo) redirect("/sign-in");
 
   return (
-    <main className="mx-auto flex max-w-3xl flex-col justify-start px-10 py-20">
-      <h1 className="head-text">Onboarding</h1>
-      <p className="mt-3 text-base-regular text-light-2">
-        Complete your profile now, to use Threds.
-      </p>
-
-      <section className="mt-9 bg-dark-2 p-10">
-        <Navbar />
-      </section>
+    <main className="flex flex-col">
+      <Navbar />
+      <div className="p-7 grid gap-5 grid-cols-1 md:grid-cols-4 lg:grid-cols-4">
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+      </div>
     </main>
   );
 }

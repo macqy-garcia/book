@@ -9,7 +9,7 @@ export default async function Home() {
   if (!user) return null;
 
   const userInfo = await fetchUser(user.id);
-  if (!userInfo) redirect("/onboarding");
+  if (userInfo) redirect("/onboarding");
 
   return (
     <main className="flex flex-col">
