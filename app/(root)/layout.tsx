@@ -18,7 +18,7 @@ export default async function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`${inter.className} bg-gray-200`}>
+        <body className={`${inter.className} bg-gray-300`}>
           <main className="flex flex-col">{children}</main>
         </body>
       </html>
