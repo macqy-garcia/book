@@ -1,3 +1,4 @@
+import Navbar from "@/components/sidebar";
 import "../globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
@@ -18,7 +19,12 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`${inter.className} bg-dark-1`}>{children}</body>
+        <body className={`${inter.className} bg-dark-1`}>
+          <main className="flex flex-col">
+            <Navbar />
+            {children}
+          </main>
+        </body>
       </html>
     </ClerkProvider>
   );
